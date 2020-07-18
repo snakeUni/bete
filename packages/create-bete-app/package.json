@@ -1,0 +1,26 @@
+{
+  "name": "create-bete-app",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "fox <1025687605@qq.com>",
+  "homepage": "https://github.com/snakeUni/bete#readme",
+  "license": "ISC",
+  "main": "lib/create-bete-app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snakeUni/bete.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/snakeUni/bete/issues"
+  }
+}
