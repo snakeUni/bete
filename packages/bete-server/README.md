@@ -1,11 +1,11 @@
-# `core`
+# `bete-server`
 
 > TODO: description
 
 ## Usage
 
 ```
-const core = require('core');
+const beteServer = require('bete-server');
 
 // TODO: DEMONSTRATE API
 ```
