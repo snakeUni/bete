@@ -28,8 +28,14 @@
     "url": "https://github.com/snakeUni/bete/issues"
   },
   "dependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/minimist": "^1.2.0",
     "chalk": "^4.1.0",
     "glob": "^7.1.6",
+    "minimist": "^1.2.5",
     "resolve-cwd": "^3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }
