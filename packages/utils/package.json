@@ -31,11 +31,13 @@
     "@types/glob": "^7.1.3",
     "@types/minimist": "^1.2.0",
     "chalk": "^4.1.0",
+    "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "minimist": "^1.2.5",
     "resolve-cwd": "^3.0.0"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.1",
     "prettier": "^2.0.5"
   }
 }

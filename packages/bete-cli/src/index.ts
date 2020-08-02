@@ -15,11 +15,11 @@ function logHelp() {
     --help, -h                 [boolean] show help
     --version, -v              [boolean] show version
     --config, -c               [string]  use specified config file
+    --init                     [boolean] init config file
     --port                     [number]  port to use for serve
     --base                     [string]  public base path for build (default: /)
     --outDir                   [string]  output directory for build (default: dist)
     --assetsDir                [string]  directory under outDir to place assets in (default: assets)
-    --assetsInlineLimit        [number]  static asset base64 inline threshold in bytes (default: 4096)
     --sourcemap                [boolean] output source maps for build (default: false)
     --minify                   [boolean | 'terser' | 'esbuild'] enable/disable minification, or specify
                                          minifier to use. (default: 'terser')
@@ -38,4 +38,56 @@ console.log(chalk.cyan(`bete v${require('../package.json').version}`))
   } else if (version || v) {
     return
   }
+
+  const envMode = mode || m || defaultMode
+  const option = await resolveOption(envMode)
+
+  if (command === 'build') {
+    await runBuild(option)
+  } else if (command === 'start') {
+    await runStart(option)
+  }
 })()
+
+async function resolveOption(mode: string) {
+  argv.mode = mode
+
+  // cast xxx=true | false into actual booleans
+  Object.keys(argv).forEach(key => {
+    if (argv[key] === 'false') {
+      argv[key] = false
+    }
+    if (argv[key] === 'true') {
+      argv[key] = true
+    }
+  })
+
+  if (command) {
+    argv.command = command
+  }
+
+  return argv
+}
+
+async function runBuild() {
+  try {
+    const run = require('./build')
+    await run()
+    process.exit(0)
+  } catch (error) {
+    console.error(chalk.red(`[bete] Build errored out.`))
+    console.error(error)
+    process.exit(1)
+  }
+}
+
+async function runStart() {
+  try {
+    const run = require('./start')
+    await run()
+  } catch (error) {
+    console.error(chalk.red(`[bete] start errored out.`))
+    console.error(error)
+    process.exit(1)
+  }
+}
