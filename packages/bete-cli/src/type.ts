@@ -16,4 +16,12 @@ export interface Argv {
   mode?: 'development' | 'production'
   m?: 'development' | 'production'
   ssr?: boolean
+  command?: 'build' | 'start' | 'test'
+}
+
+export interface Config {
+  port?: number
+  outDir?: string
+  base?: string
+  assetsDir?: string
 }
