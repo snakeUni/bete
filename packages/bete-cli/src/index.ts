@@ -1,4 +1,5 @@
 import { minimist, chalk } from '@bete/utils'
+import { resolveConfig } from './config'
 
 const argv = minimist(process.argv.slice(2))
 
@@ -40,16 +41,17 @@ console.log(chalk.cyan(`bete v${require('../package.json').version}`))
   }
 
   const envMode = mode || m || defaultMode
-  const option = await resolveOption(envMode)
+  const option = resolveOption(envMode)
+  const nextConfig = resolveConfig(option)
 
   if (command === 'build') {
-    await runBuild(option)
+    await runBuild(nextConfig)
   } else if (command === 'start') {
-    await runStart(option)
+    await runStart(nextConfig)
   }
 })()
 
-async function resolveOption(mode: string) {
+function resolveOption(mode: string) {
   argv.mode = mode
 
   // cast xxx=true | false into actual booleans

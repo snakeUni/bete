@@ -1,4 +1,6 @@
+import { resolveApp, fsExtra, chalk } from '@bete/utils'
 import { Argv, Config } from './type'
+import path from 'path'
 
 const defaultConfig: Config = {
   /**
@@ -14,7 +16,8 @@ const defaultConfig: Config = {
 }
 
 export function resolveConfig(argv: Argv) {
-  return mergeObject(defaultConfig, argv)
+  const config = getNextConfig()
+  return mergeObject(config, argv)
 }
 
 const mergeObject = (sourceObject: Config, targetObject: Argv) => {
@@ -27,4 +30,15 @@ const mergeObject = (sourceObject: Config, targetObject: Argv) => {
   })
 
   return nextSourceObject
+}
+
+const getNextConfig = () => {
+  const beteConfigPath = resolveApp('bete.config.js')
+  if (fsExtra.existsSync(beteConfigPath)) {
+    const beteConfig = require(beteConfigPath)
+    return { ...defaultConfig, ...beteConfig }
+  } else {
+    console.log(chalk.red('bete.config.js does not exist.'))
+    process.exit(1)
+  }
 }
