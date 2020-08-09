@@ -40,7 +40,7 @@ export interface Config {
   base?: string
   /**
    * Directory relative from `outDir`
-   * @default 'assets'
+   * @default 'dist/assets'
    */
   assetsDir?: string
   /**
@@ -59,5 +59,5 @@ export interface Config {
    * if CLI use ssr
    * @internal
    */
-  ssrBuild?: boolean
+  ssr?: boolean
 }

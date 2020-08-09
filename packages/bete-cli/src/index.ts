@@ -1,5 +1,6 @@
 import { minimist, chalk } from '@bete/utils'
 import { resolveConfig } from './config'
+import { Config } from './type'
 
 const argv = minimist(process.argv.slice(2))
 
@@ -71,10 +72,10 @@ function resolveOption(mode: string) {
   return argv
 }
 
-async function runBuild() {
+async function runBuild(config: Config) {
   try {
     const run = require('./build')
-    await run()
+    await run(config)
     process.exit(0)
   } catch (error) {
     console.error(chalk.red(`[bete] Build errored out.`))
@@ -83,10 +84,10 @@ async function runBuild() {
   }
 }
 
-async function runStart() {
+async function runStart(config: Config) {
   try {
     const run = require('./start')
-    await run()
+    await run(config)
   } catch (error) {
     console.error(chalk.red(`[bete] start errored out.`))
     console.error(error)

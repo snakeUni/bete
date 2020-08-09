@@ -1,18 +1,14 @@
 import { resolveApp, fsExtra, chalk } from '@bete/utils'
 import { Argv, Config } from './type'
-import path from 'path'
 
 const defaultConfig: Config = {
-  /**
-   * 默认端口
-   */
   port: 3000,
-  /**
-   * 编译后的输出目录
-   */
   outDir: 'dist',
   base: '/',
-  assetsDir: 'dist/assets'
+  assetsDir: 'dist/assets',
+  sourcemap: false,
+  minify: 'terser',
+  ssr: false
 }
 
 export function resolveConfig(argv: Argv) {

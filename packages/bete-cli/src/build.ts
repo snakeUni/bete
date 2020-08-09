@@ -1,3 +1,5 @@
-async function run() {}
+import { Config } from './type'
 
-export { run }
+async function run(config: Config) {}
+
+export default run
